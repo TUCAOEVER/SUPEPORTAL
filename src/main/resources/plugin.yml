@@ -1,0 +1,12 @@
+name: SUPERPORTAL
+version: '${project.version}'
+main: com.promc.SUPERPORTAL
+api-version: 1.16
+depend: [ WorldGuard ]
+authors: [ TUCAOEVER ]
+
+commands:
+  superportal:
+    aliases:
+      - "sportal"
+      - "sp"
