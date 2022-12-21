@@ -7,6 +7,7 @@ public class Portal {
     private String id;
     private Location location;
     private String region;
+    private String condition;
 
     /**
      * 创建传送门实例
@@ -19,6 +20,30 @@ public class Portal {
         this.id = id;
         this.region = region;
         this.location = location;
+    }
+
+    /**
+     * 获取传送门使用条件
+     * @return MVEL表达式
+     */
+    public String getCondition() {
+        return condition;
+    }
+
+    /**
+     * 设置传送门使用条件
+     * @param condition MVEL表达式
+     */
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    /**
+     * 判断传送门设置了条件
+     * @return 是否存在条件
+     */
+    public boolean hasCondition() {
+        return condition != null;
     }
 
     /**

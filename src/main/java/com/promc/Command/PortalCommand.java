@@ -37,6 +37,10 @@ public class PortalCommand implements CommandExecutor {
                 case "create":
                     if (player.hasPermission("superportal.admin")
                             || player.hasPermission("superportal.create")) {
+                        if (args.length == 1) {
+                            player.sendMessage(getLang("EMPTY_ARG"));
+                            return true;
+                        }
                         if (!PortalManager.hasPortal(args[1])) {
                             PortalManager.createPortal(args[1]);
                             player.sendMessage(getLang("SUCCESSFULLY_CREATE")
@@ -51,6 +55,10 @@ public class PortalCommand implements CommandExecutor {
                 case "delete":
                     if (player.hasPermission("superportal.admin")
                             || player.hasPermission("superportal.delete")) {
+                        if (args.length == 1) {
+                            player.sendMessage(getLang("EMPTY_ARG"));
+                            return true;
+                        }
                         if (PortalManager.hasPortal(args[1])) {
                             PortalManager.deletePortal(args[1]);
                             player.sendMessage(getLang("SUCCESSFULLY_DELETE")
@@ -70,17 +78,19 @@ public class PortalCommand implements CommandExecutor {
                                 if (args.length > 3 && args[2].equals("region")) {
                                     PortalManager.setRegion(args[1], args[3]);
                                     player.sendMessage(getLang("SUCCESSFULLY_SET_REGION")
-                                            .replaceAll("%1", args[1]));
+                                            .replaceAll("%1", args[1])
+                                            .replaceAll("%2", args[3]));
                                 } else if (args.length == 3 && args[2].equals("location")) {
                                     PortalManager.setLocation(args[1], player.getLocation());
                                     player.sendMessage(getLang("SUCCESSFULLY_SET_LOCATION")
                                             .replaceAll("%1", args[1])
-                                            .replaceAll("%2", String.valueOf(player.getLocation().getX()))
-                                            .replaceAll("%3", String.valueOf(player.getLocation().getY()))
-                                            .replaceAll("%4", String.valueOf(player.getLocation().getZ()))
-                                            .replaceAll("%5", String.valueOf(player.getLocation().getWorld())));
+                                            .replaceAll("%2", String.format("%.1f", player.getLocation().getX()))
+                                            .replaceAll("%3", String.format("%.1f", player.getLocation().getY()))
+                                            .replaceAll("%4", String.format("%.1f", player.getLocation().getZ()))
+                                            .replaceAll("%5", player.getLocation().getWorld() != null ?
+                                                    player.getLocation().getWorld().getName() : "UNKNOWN"));
                                 } else {
-                                    player.sendMessage(getLang("UNKNOWN_COMMAND"));
+                                    player.sendMessage(getLang("EMPTY_ARG"));
                                 }
                             } else {
                                 player.sendMessage(getLang("UNKNOWN_PORTAL"));
@@ -88,9 +98,9 @@ public class PortalCommand implements CommandExecutor {
                         } else {
                             player.sendMessage(getLang("DONT_HAVE_PERMISSION"));
                         }
-
                     } else {
-                        player.sendMessage(getLang("UNKNOWN_COMMAND"));
+                        player.sendMessage(getLang("EMPTY_ARG"));
+                        return true;
                     }
                     break;
                 case "list":

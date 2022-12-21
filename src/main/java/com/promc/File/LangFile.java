@@ -37,6 +37,7 @@ public class LangFile {
         add("PORTAL_ALREADY_EXIST", "传送门已存在,请删除后重试.");
         add("PORTAL_LIST", "当前已加载的传送门:");
         add("SUCCESSFULLY_TELEPORT", "已成功进行传送");
+        add("DONT_MATCH_CONDITION", "未满足使用传送门的条件");
         add("RELOAD_SUCCESS", "重载完成");
 
         for (Map.Entry<String, String> entry : langMap.entrySet()) {

@@ -1,9 +1,12 @@
 package com.promc;
 
 import com.promc.Command.PortalCommand;
+import com.promc.Command.PortalTabComplete;
 import com.promc.File.ConfigFile;
 import com.promc.File.LangFile;
 import com.promc.Listener.PlayerMoveListener;
+import com.promc.Listener.PortalListener;
+import com.promc.Listener.PrePortalListener;
 import com.promc.Listener.RegionsEnterListener;
 import com.promc.Manager.PortalStorage;
 import com.sk89q.worldguard.WorldGuard;
@@ -24,20 +27,22 @@ public final class SUPERPORTAL extends JavaPlugin {
     }
 
     public static void error(String msg) {
-        Bukkit.getLogger().severe("[SUPERTELEPORT] " + msg);
+        Bukkit.getLogger().severe("[SUPERPORTAL] " + msg);
     }
 
     public static void info(String msg) {
-        Bukkit.getLogger().info("[SUPERTELEPORT] " + msg);
+        Bukkit.getLogger().info("[SUPERPORTAL] " + msg);
     }
 
     @Override
     public void onEnable() {
-        info("SUPERPORTAL is enabling...");
         if (!Bukkit.getPluginManager().isPluginEnabled("WorldGuard")) {
             error("WorldGuard undetected. Disabling...");
             this.setEnabled(false);
             return;
+        }
+        if (!Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            info("PlaceholderAPI undetected. Condition may not work.");
         }
         SUPERPORTAL.instance = this;
         SUPERPORTAL.pluginManager = Bukkit.getPluginManager();
@@ -45,12 +50,14 @@ public final class SUPERPORTAL extends JavaPlugin {
         ConfigFile.init();
         LangFile.init();
         PortalStorage.load();
-        pluginManager.registerEvents(
-                new RegionsEnterListener(), this);
-        pluginManager.registerEvents(
-                new PlayerMoveListener(), this);
+        pluginManager.registerEvents(new RegionsEnterListener(), this);
+        pluginManager.registerEvents(new PlayerMoveListener(), this);
+        pluginManager.registerEvents(new PortalListener(), this);
+        pluginManager.registerEvents(new PrePortalListener(), this);
         Bukkit.getPluginCommand("superportal")
                 .setExecutor(new PortalCommand());
+        Bukkit.getPluginCommand("superportal")
+                .setTabCompleter(new PortalTabComplete());
         info("Successfully enabled SUPERPORTAL. By TUCAOEVER");
     }
 

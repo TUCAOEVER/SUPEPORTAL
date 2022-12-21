@@ -1,6 +1,10 @@
 package com.promc.Manager;
 
+import com.promc.Hook.PlaceholderAPIHook;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.mvel2.MVEL;
 
 import java.util.ArrayList;
 
@@ -129,6 +133,39 @@ public class PortalManager {
             PortalStorage.setRegion(id, region);
             PortalStorage.save();
         }
+    }
+
+    /**
+     * 设置传送门的使用条件
+     *
+     * @param id        传送门ID
+     * @param condition 传送门条件
+     */
+    public static void setCondition(String id, String condition) {
+        Portal portal = getPortal(id);
+        if (portal != null) {
+            portal.setCondition(condition);
+            PortalStorage.setCondition(id, condition);
+            PortalStorage.save();
+        }
+    }
+
+    /**
+     * 检查玩家是否有使用传送门的权限
+     * 如果结果返回不为布尔值则返回ture
+     * 如果没有设置传送门条件则返回true
+     * 如果没有开启PlaceholdersAPI则返回true
+     *
+     * @param portal 传送门
+     * @param player 玩家
+     * @return 是否拥有使用传送门权限
+     */
+    public static boolean checkCondition(Player player, Portal portal) {
+        if (portal.hasCondition() && PlaceholderAPIHook.isEnabled) {
+            Object result = MVEL.eval(PlaceholderAPI.setPlaceholders(player, portal.getCondition()));
+            return result instanceof Boolean ? (Boolean) result : true;
+        }
+        return true;
     }
 
     public static ArrayList<Portal> getAllPortals() {

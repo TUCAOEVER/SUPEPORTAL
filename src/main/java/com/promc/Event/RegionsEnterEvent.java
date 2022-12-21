@@ -11,13 +11,18 @@ import java.util.Set;
 
 public class RegionsEnterEvent extends Event implements Cancellable {
 
+    private static final HandlerList handlers = new HandlerList();
     private final Set<ProtectedRegion> regions;
     private final Player player;
-    private static final HandlerList handlers = new HandlerList();
     private boolean cancelled = false;
+
     public RegionsEnterEvent(Player player, Set<ProtectedRegion> regions) {
         this.regions = regions;
         this.player = player;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
     }
 
     public Set<ProtectedRegion> getRegions() {
@@ -38,13 +43,10 @@ public class RegionsEnterEvent extends Event implements Cancellable {
         this.cancelled = cancelled;
     }
 
-    public static HandlerList getHandlerList() {
-        return handlers;
-    }
-
     @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
+
 }
