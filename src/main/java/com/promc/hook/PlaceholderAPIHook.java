@@ -1,4 +1,4 @@
-package com.promc.Hook;
+package com.promc.hook;
 
 import org.bukkit.Bukkit;
 

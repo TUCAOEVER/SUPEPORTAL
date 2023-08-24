@@ -1,14 +1,14 @@
 package com.promc;
 
-import com.promc.Command.PortalCommand;
-import com.promc.Command.PortalTabComplete;
-import com.promc.File.ConfigFile;
-import com.promc.File.LangFile;
-import com.promc.Listener.PlayerMoveListener;
-import com.promc.Listener.PortalListener;
-import com.promc.Listener.PrePortalListener;
-import com.promc.Listener.RegionsEnterListener;
-import com.promc.Manager.PortalStorage;
+import com.promc.command.PortalCommand;
+import com.promc.command.PortalTabComplete;
+import com.promc.event.Entry;
+import com.promc.file.ConfigFile;
+import com.promc.file.LangFile;
+import com.promc.listener.PortalListener;
+import com.promc.listener.PrePortalListener;
+import com.promc.listener.RegionsEnterListener;
+import com.promc.manager.PortalStorage;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import org.bukkit.Bukkit;
@@ -46,18 +46,23 @@ public final class SUPERPORTAL extends JavaPlugin {
         }
         SUPERPORTAL.instance = this;
         SUPERPORTAL.pluginManager = Bukkit.getPluginManager();
+
         regionContainer = WorldGuard.getInstance().getPlatform().getRegionContainer();
+        WorldGuard.getInstance().getPlatform().getSessionManager().registerHandler(Entry.factory, null);
+
         ConfigFile.init();
         LangFile.init();
         PortalStorage.load();
+
         pluginManager.registerEvents(new RegionsEnterListener(), this);
-        pluginManager.registerEvents(new PlayerMoveListener(), this);
         pluginManager.registerEvents(new PortalListener(), this);
         pluginManager.registerEvents(new PrePortalListener(), this);
+
         Bukkit.getPluginCommand("superportal")
                 .setExecutor(new PortalCommand());
         Bukkit.getPluginCommand("superportal")
                 .setTabCompleter(new PortalTabComplete());
+
         info("Successfully enabled SUPERPORTAL. By TUCAOEVER");
     }
 

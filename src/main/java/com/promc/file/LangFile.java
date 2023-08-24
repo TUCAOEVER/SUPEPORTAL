@@ -1,4 +1,4 @@
-package com.promc.File;
+package com.promc.file;
 
 import com.promc.SUPERPORTAL;
 import org.bukkit.ChatColor;
@@ -17,7 +17,7 @@ public class LangFile {
     public static Map<String, String> langMap = new HashMap<>();
     public static File langFile = new File(
             SUPERPORTAL.getInstance().getDataFolder()
-                    + File.separator + "Locale"
+                    + File.separator + "locale"
                     + File.separator + "message_" + ConfigFile.config.getString("Language") + ".yml");
 
     /**

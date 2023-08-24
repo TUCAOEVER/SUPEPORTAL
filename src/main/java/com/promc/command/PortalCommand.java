@@ -1,9 +1,9 @@
-package com.promc.Command;
+package com.promc.command;
 
-import com.promc.File.LangFile;
-import com.promc.Manager.Portal;
-import com.promc.Manager.PortalManager;
-import com.promc.Manager.PortalStorage;
+import com.promc.file.LangFile;
+import com.promc.manager.Portal;
+import com.promc.manager.PortalManager;
+import com.promc.manager.PortalStorage;
 import com.promc.SUPERPORTAL;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import static com.promc.File.LangFile.getLang;
+import static com.promc.file.LangFile.getLang;
 
 public class PortalCommand implements CommandExecutor {
 

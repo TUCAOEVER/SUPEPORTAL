@@ -1,7 +1,6 @@
-package com.promc.Manager;
+package com.promc.manager;
 
 import org.bukkit.Location;
-import org.jetbrains.annotations.NotNull;
 
 public class Portal {
     private String id;

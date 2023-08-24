@@ -1,7 +1,7 @@
-package com.promc.Command;
+package com.promc.command;
 
-import com.promc.Manager.Portal;
-import com.promc.Manager.PortalManager;
+import com.promc.manager.Portal;
+import com.promc.manager.PortalManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;

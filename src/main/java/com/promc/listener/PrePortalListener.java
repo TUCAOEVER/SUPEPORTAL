@@ -1,13 +1,13 @@
-package com.promc.Listener;
+package com.promc.listener;
 
-import com.promc.Event.PrePortalEvent;
-import com.promc.Manager.Portal;
-import com.promc.Manager.PortalManager;
+import com.promc.event.PrePortalEvent;
+import com.promc.manager.Portal;
+import com.promc.manager.PortalManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import static com.promc.File.LangFile.getLang;
+import static com.promc.file.LangFile.getLang;
 
 public class PrePortalListener implements Listener {
 

@@ -1,6 +1,6 @@
-package com.promc.Manager;
+package com.promc.manager;
 
-import com.promc.Hook.PlaceholderAPIHook;
+import com.promc.hook.PlaceholderAPIHook;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

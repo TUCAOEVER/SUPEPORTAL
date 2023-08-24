@@ -1,4 +1,4 @@
-package com.promc.File;
+package com.promc.file;
 
 import com.promc.SUPERPORTAL;
 import org.bukkit.configuration.file.FileConfiguration;

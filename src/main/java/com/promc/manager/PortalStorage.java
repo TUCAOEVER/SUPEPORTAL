@@ -1,4 +1,4 @@
-package com.promc.Manager;
+package com.promc.manager;
 
 import com.promc.SUPERPORTAL;
 import org.bukkit.Location;

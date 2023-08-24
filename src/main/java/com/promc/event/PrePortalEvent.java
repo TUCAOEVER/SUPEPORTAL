@@ -1,6 +1,6 @@
-package com.promc.Event;
+package com.promc.event;
 
-import com.promc.Manager.Portal;
+import com.promc.manager.Portal;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
